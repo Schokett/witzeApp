@@ -132,11 +132,21 @@ body {
     color: $buttonColor;
     width: 4rem;
     height: 4rem;
+    transition: opacity 0.2s ease;
   }
   &__jokes--svg-hover {
     color: $buttonColor;
     width: 4rem;
     height: 4rem;
+    display: none;
+  }
+  &__jokes:hover {
+    .section-saved__jokes--svg-default {
+      display: none;
+    }
+    .section-saved__jokes--svg-hover {
+      display: block;
+    }
   }
   &__joke {
     font-size: 1.5rem;
