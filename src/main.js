@@ -1,2 +1,2 @@
 import "./style.scss";
-import "./api.js";
+import * as apiJoke from "./api.js";
