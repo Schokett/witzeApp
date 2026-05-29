@@ -1,0 +1,54 @@
+@use "_global" as *;
+
+.section-saved {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-family: $logoFont;
+    font-size: 3rem;
+    margin: 8rem 0 2rem 0;
+  }
+
+  &__joke-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 1rem;
+  }
+  &__jokes {
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: rgba(243, 243, 243, 0.849);
+    padding: 1rem;
+    border-radius: 18px;
+  }
+  &__jokes--svg-default {
+    color: $buttonColor;
+    background-color: transparent;
+    width: 3rem;
+    transition: opacity 0.2s ease;
+  }
+  &__jokes--svg-hover {
+    color: $buttonColor;
+    background-color: transparent;
+    width: 3rem;
+    display: none;
+  }
+  &__jokes:hover {
+    cursor: pointer;
+    .section-saved__jokes--svg-default {
+      display: none;
+    }
+    .section-saved__jokes--svg-hover {
+      display: block;
+    }
+  }
+
+  &__joke {
+    width: 100%;
+    font-size: 1.5rem;
+  }
+}
