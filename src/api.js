@@ -5,6 +5,9 @@ const jokeField = document.querySelector(".section-joke__joke");
 newJokeButton.addEventListener("click", getJoke);
 
 async function getJoke() {
+  newJokeButton.disabled = true;
+  if (jokeField) jokeField.textContent = "Witz wird geladen...";
+  //   setTimeout(() => {
   fetch("https://witzapi.de/api/joke/", {
     method: "GET",
   })
@@ -15,7 +18,11 @@ async function getJoke() {
     })
     .catch((error) => {
       console.error("Fehler:", error);
+    })
+    .finally(() => {
+      newJokeButton.disabled = false;
     });
+  //   }, 150);
 }
 
 //replace a joke

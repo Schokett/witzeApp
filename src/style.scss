@@ -60,6 +60,12 @@ body {
     border: 4px solid $buttonColor;
     gap: 0.5rem;
     white-space: nowrap;
+
+    &:disabled {
+      transform: scale(1);
+      opacity: 0.4;
+      pointer-events: none;
+    }
   }
   &__button-saved--svg-hover {
     opacity: 0;
