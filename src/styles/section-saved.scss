@@ -9,6 +9,10 @@
     font-family: $logoFont;
     font-size: 3rem;
     margin: 8rem 0 2rem 0;
+
+    @include desktop-medium {
+      text-align: center;
+    }
   }
 
   &__joke-container {
@@ -16,6 +20,10 @@
     flex-direction: column;
     width: 40%;
     gap: 1rem;
+
+    @include desktop-large {
+      width: 70%;
+    }
   }
   &__jokes {
     gap: 1rem;
@@ -50,5 +58,9 @@
   &__joke {
     width: 100%;
     font-size: 1.5rem;
+
+    @include desktop-large {
+      width: 100%;
+    }
   }
 }
