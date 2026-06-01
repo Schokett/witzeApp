@@ -2,10 +2,22 @@ const displayJokeElement = document.querySelector(".section-saved__joke-containe
 
 function displaySavedJokes() {
   const savedJokes = JSON.parse(localStorage.getItem("savedJokes")) || [];
-  displayJokeElement.innerHTML = createJokeCard().outerHTML;
+  // displayJokeElement.innerHTML = createJokeCard().outerHTML;
+  displayJokeElement.innerHTML = "";
+  if (savedJokes.length === 0) {
+    return;
+  }
+  savedJokes.forEach((jokeText) => {
+    const jokeCard = createJokeCard(jokeText);
+
+    if (jokeCard) {
+      displayJokeElement.appendChild(jokeCard);
+    }
+  });
 }
+
 displaySavedJokes();
-function createJokeCard() {
+function createJokeCard(jokeText) {
   const savedJokes = JSON.parse(localStorage.getItem("savedJokes")) || [];
   if (savedJokes.length === 0) {
     return null;
@@ -49,8 +61,8 @@ function createJokeCard() {
   div.appendChild(svgDefault);
   div.appendChild(svgHover);
 
-  p.textContent = savedJokes[0];
-  console.log(div);
+  // p.textContent = savedJokes[0];
+  p.textContent = jokeText;
   return div;
 }
 // div section-saved__jokes
