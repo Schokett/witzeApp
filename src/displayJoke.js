@@ -58,4 +58,7 @@ export function createJokeCard(jokeText) {
   p.textContent = jokeText;
   return div;
 }
-displaySavedJokes();
+const savedJokes = JSON.parse(localStorage.getItem("savedJokes")) || [];
+if (savedJokes.length > 0) {
+  displaySavedJokes();
+}
