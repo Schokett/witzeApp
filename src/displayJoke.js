@@ -1,3 +1,4 @@
+import { deleteJoke } from "./deleteJoke.js";
 const displayJokeElement = document.querySelector(".section-saved__joke-container");
 
 export function displaySavedJokes() {
@@ -51,6 +52,9 @@ export function createJokeCard(jokeText) {
   );
   svgHover.appendChild(pathHover);
 
+  div.addEventListener("click", () => {
+    deleteJoke(jokeText);
+  });
   div.appendChild(p);
   div.appendChild(svgDefault);
   div.appendChild(svgHover);
