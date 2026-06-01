@@ -1,7 +1,6 @@
 import { displaySavedJokes } from "./displayJoke.js";
 
 const saveJokeButton = document.querySelector(".section-joke__button-saved");
-// let savedJokes = JSON.parse(localStorage.getItem("savedJokes")) || [];
 
 saveJokeButton.addEventListener("click", catchJoke);
 
@@ -13,7 +12,7 @@ function catchJoke() {
     savedJokes.push(currentJoke);
     localStorage.setItem("savedJokes", JSON.stringify(savedJokes));
     displaySavedJokes();
+  } else {
+    alert("Dieser Witz ist bereits gespeichert!");
   }
 }
-
-const spanText = document.querySelector(".section-saved__empty-jokes");
