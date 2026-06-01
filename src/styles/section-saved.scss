@@ -15,6 +15,12 @@
     }
   }
 
+  &__empty-jokes {
+    font-size: 1.5rem;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.39);
+  }
+
   &__joke-container {
     display: flex;
     flex-direction: column;
