@@ -1,6 +1,6 @@
 const displayJokeElement = document.querySelector(".section-saved__joke-container");
 
-function displaySavedJokes() {
+export function displaySavedJokes() {
   const savedJokes = JSON.parse(localStorage.getItem("savedJokes")) || [];
   displayJokeElement.innerHTML = "";
   if (savedJokes.length === 0) {
@@ -15,12 +15,7 @@ function displaySavedJokes() {
   });
 }
 
-displaySavedJokes();
-function createJokeCard(jokeText) {
-  const savedJokes = JSON.parse(localStorage.getItem("savedJokes")) || [];
-  if (savedJokes.length === 0) {
-    return null;
-  }
+export function createJokeCard(jokeText) {
   const div = document.createElement("div");
   div.classList.add("section-saved__jokes");
   const p = document.createElement("p");
@@ -63,3 +58,4 @@ function createJokeCard(jokeText) {
   p.textContent = jokeText;
   return div;
 }
+displaySavedJokes();
