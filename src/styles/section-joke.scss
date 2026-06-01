@@ -75,6 +75,9 @@
       opacity: 0.4;
       pointer-events: none;
     }
+    &.is-hidden {
+      display: none !important;
+    }
 
     @include desktop-medium {
       width: 300px;

@@ -24,7 +24,7 @@ async function getJoke() {
     });
   //   }, 150);
   if (saveJokeButton) {
-    saveJokeButton.disabled = false;
+    saveJokeButton.classList.remove("is-hidden");
   }
 }
 
