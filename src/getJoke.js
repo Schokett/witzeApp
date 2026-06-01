@@ -1,6 +1,6 @@
 const newJokeButton = document.querySelector(".section-joke__button");
 const jokeField = document.querySelector(".section-joke__joke");
-
+const saveJokeButton = document.querySelector(".section-joke__button-saved");
 //Get api joke
 newJokeButton.addEventListener("click", getJoke);
 
@@ -23,6 +23,9 @@ async function getJoke() {
       newJokeButton.disabled = false;
     });
   //   }, 150);
+  if (saveJokeButton) {
+    saveJokeButton.disabled = false;
+  }
 }
 
 //replace a joke

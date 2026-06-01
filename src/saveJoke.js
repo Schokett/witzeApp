@@ -15,3 +15,5 @@ function catchJoke() {
     displaySavedJokes();
   }
 }
+
+const spanText = document.querySelector(".section-saved__empty-jokes");
