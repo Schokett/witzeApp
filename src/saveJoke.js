@@ -1,4 +1,5 @@
-import { displaySavedJokes } from "./displayJoke.js";
+// import { displaySavedJokes } from "./displayJoke.js";
+import { addSingleSavedJoke } from "./displayJoke.js";
 
 const saveJokeButton = document.querySelector(".section-joke__button-saved");
 
@@ -11,7 +12,8 @@ function catchJoke() {
   if (currentJoke && !savedJokes.includes(currentJoke)) {
     savedJokes.push(currentJoke);
     localStorage.setItem("savedJokes", JSON.stringify(savedJokes));
-    displaySavedJokes();
+    // displaySavedJokes();
+    addSingleSavedJoke(currentJoke);
   } else {
     alert("Dieser Witz ist bereits gespeichert!");
   }

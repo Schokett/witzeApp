@@ -8,17 +8,34 @@ export function displaySavedJokes() {
     return;
   }
   savedJokes.forEach((jokeText) => {
-    const jokeCard = createJokeCard(jokeText);
+    // const jokeCard = createJokeCard(jokeText);
+    const jokeCard = createJokeCard(jokeText, true);
 
     if (jokeCard) {
       displayJokeElement.appendChild(jokeCard);
     }
   });
 }
+export function addSingleSavedJoke(jokeText) {
+  // Karte erstellen (startet unsichtbar)
+  const jokeCard = createJokeCard(jokeText, false);
 
-export function createJokeCard(jokeText) {
+  // Witz ganz oben in die Liste einfügen
+  displayJokeElement.insertBefore(jokeCard, displayJokeElement.firstChild);
+
+  // Animation nach einem minimalen Moment starten
+  setTimeout(() => {
+    jokeCard.classList.add("is-visible");
+  }, 150);
+}
+
+export function createJokeCard(jokeText, isInitial = false) {
   const div = document.createElement("div");
   div.classList.add("section-saved__jokes");
+
+  if (isInitial) {
+    div.classList.add("is-visible");
+  }
   const p = document.createElement("p");
   p.classList.add("section-saved__joke");
 
