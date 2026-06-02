@@ -2,52 +2,65 @@ const newJokeButton = document.querySelector(".section-joke__button");
 const jokeField = document.querySelector(".section-joke__joke");
 const saveJokeButton = document.querySelector(".section-joke__button-saved");
 //Get api joke
-newJokeButton.addEventListener("click", getJoke);
+newJokeButton.addEventListener("click", verifyCategory);
 
-async function getJoke() {
-  newJokeButton.disabled = true;
-  if (jokeField) jokeField.textContent = "Witz wird geladen...";
-  //   setTimeout(() => {
-  fetch("https://witzapi.de/api/joke/", {
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      replaceJoke(data);
-    })
-    .catch((error) => {
-      console.error("Fehler:", error);
-    })
-    .finally(() => {
-      newJokeButton.disabled = false;
-    });
-  //   }, 150);
-  if (saveJokeButton) {
-    saveJokeButton.classList.remove("is-hidden");
+//if alle kategorien führe getjoke aus else getCategorysProgammer , else getCategorysChuckNorris
+function verifyCategory() {
+  const categorySelect = document.querySelector(".section-joke__real-select");
+  const selectedValue = categorySelect.value;
+
+  // console.log("Ausgewählte Kategorie:", selectedValue);
+
+  if (selectedValue === "all") {
+    getJoke();
+  } else if (selectedValue === "programmierwitze") {
+    getProgrammerJoke();
+  } else if (selectedValue === "chuck-norris-witze") {
+    getChuckNorrisJoke();
   }
 }
 
+async function getJoke() {
+  prepareLoading();
+
+  fetch("https://witzapi.de/api/joke/")
+    .then((response) => response.json())
+    .then((data) => replaceJoke(data))
+    .catch((error) => console.error("Fehler:", error))
+    .finally(() => resetLoader());
+}
+async function getProgrammerJoke() {
+  prepareLoading();
+
+  fetch("https://witzapi.de/api/joke/?category=programmierwitze")
+    .then((response) => response.json())
+    .then((data) => replaceJoke(data))
+    .catch((error) => console.error("Fehler:", error))
+    .finally(() => resetLoader());
+}
+async function getChuckNorrisJoke() {
+  prepareLoading();
+
+  fetch("https://witzapi.de/api/joke/?category=chuck-norris-witze")
+    .then((response) => response.json())
+    .then((data) => replaceJoke(data))
+    .catch((error) => console.error("Fehler:", error))
+    .finally(() => resetLoader());
+}
+function prepareLoading() {
+  newJokeButton.disabled = true;
+  if (jokeField) jokeField.textContent = "Witz wird geladen...";
+  if (saveJokeButton) saveJokeButton.classList.remove("is-hidden");
+}
+function resetLoader() {
+  newJokeButton.disabled = false;
+}
 //replace a joke
 async function replaceJoke(dataJoke) {
-  if (jokeField) {
+  console.log(dataJoke);
+  if (jokeField && dataJoke && dataJoke[0] && dataJoke[0].text) {
     const cleanJoke = dataJoke[0].text;
     const manipulatedJoke = cleanJoke.slice(0, -1);
     jokeField.textContent = manipulatedJoke;
   }
 }
-
-async function getCategorys() {
-  fetch("https://witzapi.de/api/category/", {
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.error("Fehler:", error);
-    })
-    .finally(() => {});
-}
-getCategorys();
