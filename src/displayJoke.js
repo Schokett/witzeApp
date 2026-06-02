@@ -17,13 +17,10 @@ export function displaySavedJokes() {
   });
 }
 export function addSingleSavedJoke(jokeText) {
-  // Karte erstellen (startet unsichtbar)
   const jokeCard = createJokeCard(jokeText, false);
 
-  // Witz ganz oben in die Liste einfügen
   displayJokeElement.insertBefore(jokeCard, displayJokeElement.firstChild);
 
-  // Animation nach einem minimalen Moment starten
   setTimeout(() => {
     jokeCard.classList.add("is-visible");
   }, 150);
