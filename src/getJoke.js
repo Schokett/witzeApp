@@ -36,3 +36,18 @@ async function replaceJoke(dataJoke) {
     jokeField.textContent = manipulatedJoke;
   }
 }
+
+async function getCategorys() {
+  fetch("https://witzapi.de/api/category/", {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Fehler:", error);
+    })
+    .finally(() => {});
+}
+getCategorys();
