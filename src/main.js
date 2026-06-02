@@ -17,3 +17,6 @@ if (realSelect && customText) {
     customText.textContent = selectedOptionText;
   });
 }
+function backgroundToggle() {
+  document.body.classList.toggle("darkmode");
+}
