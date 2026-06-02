@@ -49,8 +49,11 @@ async function getChuckNorrisJoke() {
 }
 function prepareLoading() {
   newJokeButton.disabled = true;
-  if (jokeField) jokeField.textContent = "Witz wird geladen...";
+  // if (jokeField) jokeField.textContent = "Witz wird geladen...";
   if (saveJokeButton) saveJokeButton.classList.remove("is-hidden");
+  if (jokeField) {
+    jokeField.classList.remove("is-visible");
+  }
 }
 function resetLoader() {
   newJokeButton.disabled = false;
@@ -61,6 +64,12 @@ async function replaceJoke(dataJoke) {
   if (jokeField && dataJoke && dataJoke[0] && dataJoke[0].text) {
     const cleanJoke = dataJoke[0].text;
     const manipulatedJoke = cleanJoke.slice(0, -1);
+
+    jokeField.classList.add("is-animating");
     jokeField.textContent = manipulatedJoke;
+
+    setTimeout(() => {
+      jokeField.classList.remove("is-animating");
+    }, 50);
   }
 }
