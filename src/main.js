@@ -17,6 +17,8 @@ if (realSelect && customText) {
     customText.textContent = selectedOptionText;
   });
 }
-function backgroundToggle() {
+
+const darkmodeToggle = document.getElementById("darkmode-toggle");
+darkmodeToggle.addEventListener("change", () => {
   document.body.classList.toggle("darkmode");
-}
+});

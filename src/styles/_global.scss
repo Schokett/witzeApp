@@ -12,9 +12,33 @@ body {
   //Darkmode
   box-shadow: 0 2px 30px rgba(59, 59, 59, 0.39) inset;
   min-height: 100vh;
-  //Darkmode
-  background-image: radial-gradient(circle at top, #4a4a4a, #262626, #141414);
-  background-attachment: fixed;
+  // //Darkmode
+  // background-image: radial-gradient(circle at top, #4a4a4a, #262626, #141414);
+  // background-attachment: fixed;
+  // 1. Das ist dein HELLER Standard-Verlauf (Lightmode)
+  background-image: radial-gradient(circle at top, #ffffff, #dddddd);
+  box-shadow: 0 2px 30px rgba(59, 59, 59, 0.39) inset;
+
+  // 2. Das ist die unsichtbare DUNKLE Schicht, die drüber liegt
+  &::before {
+    content: "";
+    position: fixed; // "fixed" statt "absolute", damit es beim Scrollen wie der Body mitgeht
+    inset: 0;
+    background-image: radial-gradient(circle at top, #4a4a4a, #262626, #141414); // Dein Wunsch-Grau
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; // Das blendet in BEIDE Richtungen weich ein/aus
+    z-index: -1;
+  }
+
+  // 3. Wenn die Klasse aktiv ist, wird die dunkle Schicht sichtbar gemacht
+  &.darkmode::before {
+    opacity: 1;
+  }
+}
+
+// LÖSCHE ODER LEERE DIESEN BLOCK:
+.darkmode {
+  // Hier darf KEIN background-image mehr drin stehen!
 }
 
 @mixin desktop-large {
